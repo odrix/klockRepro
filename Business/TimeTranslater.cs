@@ -14,7 +14,7 @@ namespace klockRepro.Business
         {
             string nbHourInLetter = ChiffresHeures[time.Hour];
             string plurielHeure = time.Hour > 1 ? "s" : "";
-            if (time.Hour == 12 || time.Hour == 24)
+            if (time.Hour == 12 || time.Hour == 0)
             {
                 return string.Format("il est {0}", nbHourInLetter);
             }
