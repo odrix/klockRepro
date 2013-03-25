@@ -8,9 +8,10 @@ using klockRepro.Business;
 namespace Testing
 {
     [TestClass]
-    public class TranslateFr
+    public class TestHeuresPile
     {
         [TestMethod]
+        [TestCategory("translate uniquement les heures")]
         public void TranslateUneHeure()
         {
             TimeTranslater t = new TimeTranslater();
@@ -19,6 +20,7 @@ namespace Testing
         }
 
         [TestMethod]
+        [TestCategory("translate uniquement les heures")]
         public void TranslateDeuxHeures()
         {
             TimeTranslater t = new TimeTranslater();
@@ -27,6 +29,7 @@ namespace Testing
         }
 
         [TestMethod]
+        [TestCategory("translate uniquement les heures")]
         public void TranslateCinqHeures()
         {
             TimeTranslater t = new TimeTranslater();
@@ -35,6 +38,7 @@ namespace Testing
         }
 
         [TestMethod]
+        [TestCategory("translate uniquement les heures")]
         public void TranslateMidi()
         {
             TimeTranslater t = new TimeTranslater();
@@ -43,6 +47,7 @@ namespace Testing
         }
 
         [TestMethod]
+        [TestCategory("translate uniquement les heures")]
         public void TranslateMinuit()
         {
             TimeTranslater t = new TimeTranslater();
@@ -51,6 +56,7 @@ namespace Testing
         }
 
         [TestMethod]
+        [TestCategory("translate uniquement les heures")]
         public void TranslateTroisHeurePour15h()
         {
             TimeTranslater t = new TimeTranslater();
