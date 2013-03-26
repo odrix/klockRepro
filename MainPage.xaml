@@ -5,10 +5,28 @@
     xmlns:local="using:klockRepro"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:common="using:klockRepro.Common"
     mc:Ignorable="d">
+    
+    <Page.Resources>
+        <common:ActiveColorConverter x:Key="ActiveColorConverter" />
+        <SolidColorBrush x:Key="inactif" Color="#FF1F1E1E" />
+    </Page.Resources>
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <GridView x:Name="GrdClock">
+        <GridView x:Name="GrdClock" ItemsSource="{Binding}" >
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" Width="55" Height="55"
+                               Foreground="{Binding Active, Converter={StaticResource ActiveColorConverter}}"
+                               FontSize="50" Margin="7"/>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapGrid Width="920" Orientation="Horizontal"></WrapGrid>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
         </GridView>
     </Grid>
 </Page>

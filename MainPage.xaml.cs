@@ -23,13 +23,17 @@ namespace klockRepro
     /// </summary>
     public sealed partial class MainPage : Page
     {
-         DispatcherTimer timer;
+        DispatcherTimer timer;
+        ClockControler controler;
+
         public MainPage()
         {
             this.InitializeComponent();
+            controler = new ClockControler();
+            controler.CurrentTimeToDisplay();
+            this.DataContext = controler.ClockLetters;
 
-            //GrdClock.DataContext = _ClockLetters;
-
+            timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMinutes(1);
             timer.Tick += timer_Tick;
             timer.Start();
@@ -39,7 +43,7 @@ namespace klockRepro
 
         void timer_Tick(object sender, object e)
         {
-            
+            controler.CurrentTimeToDisplay();
         }
 
         /// <summary>
