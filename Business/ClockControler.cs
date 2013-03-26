@@ -11,6 +11,7 @@ namespace klockRepro.Business
     public class ClockControler : INotifyPropertyChanged
     {
         private string _ClockLetters = "ILNESTODEUXQUATRETROISNEUFUNESEPTHUITSIXCINQMIDIXMINUITONZERHEURESMOINSOLEDIXETRQUARTPMDVINGT-CINQUETSDEMIEPAM";
+        //"ITLAZISASTIMOACQUARTERDCTWENTYFIVEXIHALFBTENSITOPASTEROUNINEONEFSIXTHREEFOURIFIVETWOEIGHTELEVENPSEVENITWELVETENSEIOCLOCK"
         private DateTime? _lastTime = null;
         public ObservableCollection<DisplayLetter> ClockLetters { get; set; }
         public int MinutesRestantes { get; private set; }
@@ -43,7 +44,7 @@ namespace klockRepro.Business
             MinutesRestantes = currentTime.Minute % 5;
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs("MinutesRestantes"));
 
-            if (MinutesRestantes == 0 && !_lastTime.HasValue) // ça n'a pas changé depuis le dernier passage
+            if (MinutesRestantes == 0 || !_lastTime.HasValue) // ça n'a pas changé depuis le dernier passage
             {
                 Word[] words = _translater.Translate(currentTime);
                 foreach (DisplayLetter l in ClockLetters) l.Active = false;

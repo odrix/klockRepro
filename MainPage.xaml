@@ -6,43 +6,55 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:common="using:klockRepro.Common"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
     
     <Page.Resources>
         <common:ActiveColorConverter x:Key="ActiveColorConverter" />
         <common:MinuteColorConverter x:Key="MinuteColorConverter" />
     </Page.Resources>
 
-    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Margin="30">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center"  >
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
+            <RowDefinition Height="25" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="25" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30" />
-            <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="25" />
+            <ColumnDefinition Width="820" />
+            <ColumnDefinition Width="25" />
         </Grid.ColumnDefinitions>
 
-        <GridView x:Name="GrdClock" ItemsSource="{Binding ClockLetters}" Grid.Column="1" Grid.Row="1" >
+        <GridView x:Name="GrdClock" ItemsSource="{Binding ClockLetters}" Grid.Column="1" Grid.Row="1" 
+                  HorizontalAlignment="Center" VerticalAlignment="Center" >
             <GridView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}" Width="55" Height="55"
+                    <TextBlock Text="{Binding Name}" Width="45" Height="45"
                                Foreground="{Binding Active, Converter={StaticResource ActiveColorConverter}}"
-                               FontSize="50" Margin="7"/>
+                               FontSize="40" Margin="7 3"/>
                 </DataTemplate>
             </GridView.ItemTemplate>
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapGrid Width="920" Orientation="Horizontal"></WrapGrid>
+                    <WrapGrid Width="760" Orientation="Horizontal"></WrapGrid>
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
         </GridView>
 
-        <Ellipse Grid.Column="0" Grid.Row="0" Width="20" Height="20" Fill="{Binding MinutesRestantes, Converter={StaticResource MinuteColorConverter}, ConverterParameter=2}" />
-        <Ellipse Grid.Column="2" Grid.Row="0" Width="20" Height="20" Fill="{Binding MinutesRestantes, Converter={StaticResource MinuteColorConverter}, ConverterParameter=3}" />
-        <Ellipse Grid.Column="2" Grid.Row="2" Width="20" Height="20" Fill="{Binding MinutesRestantes, Converter={StaticResource MinuteColorConverter}, ConverterParameter=4}" />
-        <Ellipse Grid.Column="0" Grid.Row="2" Width="20" Height="20" Fill="{Binding MinutesRestantes, Converter={StaticResource MinuteColorConverter}, ConverterParameter=1}" />
+        <Ellipse Grid.Column="0" Grid.Row="0" Width="20" Height="20" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center"
+                 Fill="{Binding MinutesRestantes, Converter={StaticResource MinuteColorConverter}, ConverterParameter=1}" />
+        <Ellipse Grid.Column="2" Grid.Row="0" Width="20" Height="20" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center"
+                 Fill="{Binding MinutesRestantes, Converter={StaticResource MinuteColorConverter}, ConverterParameter=2}" />
+        <Ellipse Grid.Column="2" Grid.Row="2" Width="20" Height="20" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center"
+                 Fill="{Binding MinutesRestantes, Converter={StaticResource MinuteColorConverter}, ConverterParameter=3}" />
+        <Ellipse Grid.Column="0" Grid.Row="2" Width="20" Height="20" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center"
+                 Fill="{Binding MinutesRestantes, Converter={StaticResource MinuteColorConverter}, ConverterParameter=4}"  />
+    </Grid>
     </Grid>
 </Page>
