@@ -22,7 +22,7 @@ namespace klockRepro.Business
         public Word onze = new Word() { Index = 55, Length = 4 };
         public Word midi = new Word() { Index = 44, Length = 4 };
 
-        public Word cinqm = new Word() { Index = 95, Length = 4 };
+        public Word cinqm = new Word() { Index = 94, Length = 4 };
         public Word dixm = new Word() { Index = 74, Length = 3 };
         public Word etq = new Word() { Index = 77, Length = 2 };
         public Word etd = new Word() { Index = 99, Length = 2 };
@@ -42,7 +42,7 @@ namespace klockRepro.Business
         {
             _ChiffresMinute = new List<Word[]>();
             _ChiffresHeures = new Word[] { minuit, une, deux, trois, quatre, cinqh, six, sept, huit, neuf, dixh, onze, midi, une, deux, trois, quatre, cinqh, six, sept, huit, neuf, dixh, onze };
-            for (int i = 0; i < 3; i++) _ChiffresMinute.Add(new Word[] { });
+            for (int i = 0; i < 5; i++) _ChiffresMinute.Add(new Word[] { });
             for (int i = 0; i < 5; i++) _ChiffresMinute.Add(new Word[] { cinqm });
             for (int i = 0; i < 5; i++) _ChiffresMinute.Add(new Word[] { dixm });
             for (int i = 0; i < 5; i++) _ChiffresMinute.Add(new Word[] { etq, quart });
@@ -54,7 +54,7 @@ namespace klockRepro.Business
             for (int i = 0; i < 5; i++) _ChiffresMinute.Add(new Word[] { moins, le, quart });
             for (int i = 0; i < 5; i++) _ChiffresMinute.Add(new Word[] { moins, dixm });
             for (int i = 0; i < 5; i++) _ChiffresMinute.Add(new Word[] { moins, cinqm });
-            for (int i = 0; i < 2; i++) _ChiffresMinute.Add(new Word[] { });
+            //for (int i = 0; i < 2; i++) _ChiffresMinute.Add(new Word[] { });
         }
 
         public Word[] Translate(DateTime time)

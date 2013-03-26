@@ -30,11 +30,12 @@ namespace klockRepro
         {
             this.InitializeComponent();
             controler = new ClockControler();
+            this.DataContext = controler;
+            
             controler.CurrentTimeToDisplay();
-            this.DataContext = controler.ClockLetters;
 
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMinutes(1);
+            timer.Interval = TimeSpan.FromSeconds(15);
             timer.Tick += timer_Tick;
             timer.Start();
         }

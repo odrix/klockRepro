@@ -10,11 +10,22 @@
     
     <Page.Resources>
         <common:ActiveColorConverter x:Key="ActiveColorConverter" />
-        <SolidColorBrush x:Key="inactif" Color="#FF1F1E1E" />
+        <common:MinuteColorConverter x:Key="MinuteColorConverter" />
     </Page.Resources>
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <GridView x:Name="GrdClock" ItemsSource="{Binding}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="30" />
+        </Grid.ColumnDefinitions>
+
+        <GridView x:Name="GrdClock" ItemsSource="{Binding ClockLetters}" Grid.Column="1" Grid.Row="1" >
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" Width="55" Height="55"
@@ -28,5 +39,10 @@
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
         </GridView>
+
+        <Ellipse Grid.Column="0" Grid.Row="0" Width="20" Height="20" Fill="{Binding MinutesRestantes, Converter={StaticResource MinuteColorConverter}, ConverterParameter=2}" />
+        <Ellipse Grid.Column="2" Grid.Row="0" Width="20" Height="20" Fill="{Binding MinutesRestantes, Converter={StaticResource MinuteColorConverter}, ConverterParameter=3}" />
+        <Ellipse Grid.Column="2" Grid.Row="2" Width="20" Height="20" Fill="{Binding MinutesRestantes, Converter={StaticResource MinuteColorConverter}, ConverterParameter=4}" />
+        <Ellipse Grid.Column="0" Grid.Row="2" Width="20" Height="20" Fill="{Binding MinutesRestantes, Converter={StaticResource MinuteColorConverter}, ConverterParameter=1}" />
     </Grid>
 </Page>

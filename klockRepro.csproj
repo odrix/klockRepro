@@ -112,6 +112,7 @@
     <Compile Include="Business\IndexLengthWord.cs" />
     <Compile Include="Business\TimeTranslater.cs" />
     <Compile Include="Common\ActiveColorConverter.cs" />
+    <Compile Include="Common\MinuteColorConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

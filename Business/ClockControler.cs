@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace klockRepro.Business
 {
-    public class ClockControler
+    public class ClockControler : INotifyPropertyChanged
     {
         private string _ClockLetters = "ILNESTODEUXQUATRETROISNEUFUNESEPTHUITSIXCINQMIDIXMINUITONZERHEURESMOINSOLEDIXETRQUARTPMDVINGT-CINQUETSDEMIEPAM";
+        private DateTime? _lastTime = null;
         public ObservableCollection<DisplayLetter> ClockLetters { get; set; }
+        public int MinutesRestantes { get; private set; }
+
         ITimeTranslater _translater;
 
         public ClockControler()
@@ -36,15 +40,25 @@ namespace klockRepro.Business
         {
             DateTime currentTime = DateTime.Now;
 
-            Word[] words = _translater.Translate(currentTime);
-            foreach (DisplayLetter l in ClockLetters) l.Active = false;
-            foreach (Word r in words)
+            MinutesRestantes = currentTime.Minute % 5;
+            if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs("MinutesRestantes"));
+
+            if (MinutesRestantes == 0 && !_lastTime.HasValue) // ça n'a pas changé depuis le dernier passage
             {
-                for (int i = r.Index; i < r.Index + r.Length; i++)
+                Word[] words = _translater.Translate(currentTime);
+                foreach (DisplayLetter l in ClockLetters) l.Active = false;
+                foreach (Word r in words)
                 {
-                    ClockLetters[i].Active = true;
+                    for (int i = r.Index; i < r.Index + r.Length; i++)
+                    {
+                        ClockLetters[i].Active = true;
+                    }
                 }
             }
+
+            _lastTime = currentTime;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
