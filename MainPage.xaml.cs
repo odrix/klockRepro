@@ -1,5 +1,7 @@
-﻿using System;
+﻿using klockRepro.Business;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Windows.Foundation;
@@ -21,9 +23,23 @@ namespace klockRepro
     /// </summary>
     public sealed partial class MainPage : Page
     {
+         DispatcherTimer timer;
         public MainPage()
         {
             this.InitializeComponent();
+
+            //GrdClock.DataContext = _ClockLetters;
+
+            timer.Interval = TimeSpan.FromMinutes(1);
+            timer.Tick += timer_Tick;
+            timer.Start();
+        }
+
+        
+
+        void timer_Tick(object sender, object e)
+        {
+            
         }
 
         /// <summary>
