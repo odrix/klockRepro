@@ -13,17 +13,12 @@ namespace Testing
     {
         private class MidiEtQuartTranslate : ITimeTranslater
         {
-            public string Translate(DateTime time)
+            public Word[] Translate(DateTime time)
             {
-                return "il est midi et quart";
-            }
-
-            public IndexLengthWord[] TranslateToIndex(DateTime time)
-            {
-                List<IndexLengthWord> result = new List<IndexLengthWord>();
-                result.Add(new IndexLengthWord() { Index = 0, Length = 2 });    // il
-                result.Add(new IndexLengthWord() { Index = 3, Length = 3 });    // est
-                result.Add(new IndexLengthWord() { Index = 44, Length = 4 });   //midi
+                List<Word> result = new List<Word>();
+                result.Add(new Word() { Index = 0, Length = 2 });    // il
+                result.Add(new Word() { Index = 3, Length = 3 });    // est
+                result.Add(new Word() { Index = 44, Length = 4 });   //midi
                 return result.ToArray();
             }
         }

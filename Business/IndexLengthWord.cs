@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace klockRepro.Business
 {
-    public class  IndexLengthWord
+    public class  Word
     {
         public int Index;
         public int Length;

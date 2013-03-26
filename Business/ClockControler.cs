@@ -34,9 +34,9 @@ namespace klockRepro.Business
 
         public void CurrentTimeToDisplay()
         {
-            IndexLengthWord[] displayDirectives = _translater.TranslateToIndex(DateTime.Now);
+            Word[] displayDirectives = _translater.Translate(DateTime.Now);
             foreach (DisplayLetter l in ClockLetters) l.Active = false;
-            foreach (IndexLengthWord r in displayDirectives)
+            foreach (Word r in displayDirectives)
             {
                 for (int i = r.Index; i < r.Index + r.Length; i++)
                 {
