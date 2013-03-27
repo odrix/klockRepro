@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="21d20f81-9f4c-4b1e-bc7d-6c6bbadbccd8" Publisher="CN=Adrien" Version="1.0.0.0" />
+  <Identity Name="45805Odrix.Ilestlheure" Publisher="CN=FC2A7F2C-5167-446B-8392-AB45EBA6B7B4" Version="1.0.0.1" />
   <Properties>
-    <DisplayName>klockRepro</DisplayName>
-    <PublisherDisplayName>Adrien</PublisherDisplayName>
+    <DisplayName>Il est l'heure</DisplayName>
+    <PublisherDisplayName>Odrix</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="klockRepro.App">
-      <VisualElements DisplayName="klockRepro" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="klockRepro" ForegroundText="light" BackgroundColor="#1e1e1e">
+      <VisualElements DisplayName="Il est l'heure" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="klockRepro" ForegroundText="light" BackgroundColor="#1e1e1e">
         <DefaultTile ShowName="allLogos" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#1e1e1e" />
         <InitialRotationPreference>

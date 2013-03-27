@@ -31,20 +31,26 @@ namespace klockRepro
             this.InitializeComponent();
             controler = new ClockControler();
             this.DataContext = controler;
-            
+
             controler.CurrentTimeToDisplay();
 
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(15);
+            timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += timer_Tick;
             timer.Start();
         }
 
-        
-
         void timer_Tick(object sender, object e)
         {
             controler.CurrentTimeToDisplay();
+            foreach (DisplayLetter l in controler.ClockLetters)
+            {
+                var selectItem = (from s in GrdClock.SelectedItems
+                        where s == l
+                        select s).FirstOrDefault();
+                if (selectItem == null && l.Active) GrdClock.SelectedItems.Add(l);
+                else if (selectItem != null && !l.Active) GrdClock.SelectedItems.Remove(l);
+            }
         }
 
         /// <summary>

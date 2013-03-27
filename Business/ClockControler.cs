@@ -33,9 +33,11 @@ namespace klockRepro.Business
             ClockLetters = new ObservableCollection<DisplayLetter>();
             foreach (char c in _ClockLetters.ToCharArray())
             {
-                ClockLetters.Add(new DisplayLetter() { Name = c.ToString(), Active = false });
+                DisplayLetter l = new DisplayLetter() { Name = c.ToString(), Active = false };
+                ClockLetters.Add(l);
             }
         }
+
 
         public void CurrentTimeToDisplay()
         {
