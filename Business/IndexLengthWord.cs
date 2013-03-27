@@ -8,7 +8,13 @@ namespace klockRepro.Business
 {
     public class  Word
     {
-        public int Index;
-        public int Length;
+        public Word(int index, int length)
+        {
+            Index = index;
+            Length = length;
+        }
+
+        public int Index { get; private set; }
+        public int Length { get; private set; }
     }
 }

@@ -13,6 +13,7 @@ namespace Testing
     {
         private class MidiEtQuartTranslate : ITimeTranslater
         {
+            public string ClockLetters { get { return "ILNESTODEUXQUATRETROISNEUFUNESEPTHUITSIXCINQMIDIXMINUITONZERHEURESMOINSOLEDIXETRQUARTPMDVINGT-CINQUETSDEMIEPAM"; } }
             public Word[] Translate(DateTime time)
             {
                 List<Word> result = new List<Word>();

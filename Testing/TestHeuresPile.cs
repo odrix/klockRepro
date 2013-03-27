@@ -13,7 +13,7 @@ namespace Testing
         [TestMethod]
         public void TranslateUneHeure()
         {
-            TimeTranslater t = new TimeTranslater();
+            TimeTranslaterFR t = new TimeTranslaterFR();
             Word[] result =  t.Translate (new DateTime(2013, 3, 25, 1, 0, 0));
             Assert.AreEqual(t.une, result[2]);
             Assert.AreEqual(t.heure, result[3]);
@@ -22,7 +22,7 @@ namespace Testing
         [TestMethod]
         public void TranslateDeuxHeures()
         {
-            TimeTranslater t = new TimeTranslater();
+            TimeTranslaterFR t = new TimeTranslaterFR();
             Word[] result = t.Translate(new DateTime(2013, 3, 25, 2, 0, 0));
             Assert.AreEqual(t.deux, result[2]);
             Assert.AreEqual(t.heures, result[3]);
@@ -31,7 +31,7 @@ namespace Testing
         [TestMethod]
         public void TranslateCinqHeures()
         {
-            TimeTranslater t = new TimeTranslater();
+            TimeTranslaterFR t = new TimeTranslaterFR();
             Word[] result = t.Translate(new DateTime(2013, 3, 25, 5, 0, 0));
             Assert.AreEqual(t.cinqh, result[2]);
             Assert.AreEqual(t.heures, result[3]);
@@ -40,7 +40,7 @@ namespace Testing
         [TestMethod]
         public void TranslateMidi()
         {
-            TimeTranslater t = new TimeTranslater();
+            TimeTranslaterFR t = new TimeTranslaterFR();
             Word[] result = t.Translate(new DateTime(2013, 3, 25, 12, 0, 0));
             Assert.AreEqual(t.midi, result[2]);
             Assert.AreEqual(3, result.Length);
@@ -49,7 +49,7 @@ namespace Testing
         [TestMethod]
         public void TranslateMinuit()
         {
-            TimeTranslater t = new TimeTranslater();
+            TimeTranslaterFR t = new TimeTranslaterFR();
             Word[] result = t.Translate(new DateTime(2013, 3, 25, 0, 0, 0));
             Assert.AreEqual(t.minuit, result[2]);
             Assert.AreEqual(3, result.Length);
@@ -58,7 +58,7 @@ namespace Testing
         [TestMethod]
         public void TranslateTroisHeurePour15h()
         {
-            TimeTranslater t = new TimeTranslater();
+            TimeTranslaterFR t = new TimeTranslaterFR();
             Word[] result = t.Translate(new DateTime(2013, 3, 25, 15, 0, 0));
             Assert.AreEqual(t.trois, result[2]);
             Assert.AreEqual(t.heures, result[3]);

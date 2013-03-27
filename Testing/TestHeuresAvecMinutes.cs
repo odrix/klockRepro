@@ -15,7 +15,7 @@ namespace Testing
         [TestMethod]
         public void TranslateDeuxHeureCinq()
         {
-            TimeTranslater t = new TimeTranslater();
+            TimeTranslaterFR t = new TimeTranslaterFR();
             Word[] result = t.Translate(new DateTime(2013, 3, 25, 2, 5, 0));
             Assert.AreEqual(t.cinqm, result[4], "5 minutes");
             Assert.AreEqual(5, result.Length);
@@ -27,7 +27,7 @@ namespace Testing
         [TestMethod]
         public void TranslateDeuxHeureDix()
         {
-            TimeTranslater t = new TimeTranslater();
+            TimeTranslaterFR t = new TimeTranslaterFR();
             Word[] result = t.Translate(new DateTime(2013, 3, 25, 2, 10, 0));
             Assert.AreEqual(t.dixm, result[4], "10 minutes");
             Assert.AreEqual(5, result.Length);
@@ -39,7 +39,7 @@ namespace Testing
         [TestMethod]
         public void TranslateDeuxHeureEtQuart()
         {
-            TimeTranslater t = new TimeTranslater();
+            TimeTranslaterFR t = new TimeTranslaterFR();
             Word[] result = t.Translate(new DateTime(2013, 3, 25, 2, 15, 0));
             Assert.AreEqual(t.etq, result[4], "'et' 15 minutes");
             Assert.AreEqual(t.quart, result[5], "'quart' 15 minutes");
@@ -53,7 +53,7 @@ namespace Testing
         [TestMethod]
         public void TranslateTroisHeureMoinsCinq()
         {
-            TimeTranslater t = new TimeTranslater();
+            TimeTranslaterFR t = new TimeTranslaterFR();
             Word[] result = t.Translate(new DateTime(2013, 3, 25, 2, 55, 0));
             Assert.AreEqual(t.trois, result[2], "'trois' 55 minutes");
             Assert.AreEqual(t.heures, result[3], "'heures' 55 minutes");
@@ -71,7 +71,7 @@ namespace Testing
         [TestMethod]
         public void Translate3heures()
         {
-            TimeTranslater t = new TimeTranslater();
+            TimeTranslaterFR t = new TimeTranslaterFR();
             Word[] result = t.Translate(new DateTime(2013, 3, 25, 3, 0, 0));
             Assert.AreEqual(t.trois, result[2], "'trois' 0 minutes");
             Assert.AreEqual(t.heures, result[3], "'heures' 0 minutes");

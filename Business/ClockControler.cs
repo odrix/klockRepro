@@ -10,8 +10,8 @@ namespace klockRepro.Business
 {
     public class ClockControler : INotifyPropertyChanged
     {
-        private string _ClockLetters = "ILNESTODEUXQUATRETROISNEUFUNESEPTHUITSIXCINQMIDIXMINUITONZERHEURESMOINSOLEDIXETRQUARTPMDVINGT-CINQUETSDEMIEPAM";
-        //"ITLAZISASTIMOACQUARTERDCTWENTYFIVEXIHALFBTENSITOPASTEROUNINEONEFSIXTHREEFOURIFIVETWOEIGHTELEVENPSEVENITWELVETENSEIOCLOCK"
+        
+        //""
         private DateTime? _lastTime = null;
         public ObservableCollection<DisplayLetter> ClockLetters { get; set; }
         public int MinutesRestantes { get; private set; }
@@ -19,7 +19,7 @@ namespace klockRepro.Business
         ITimeTranslater _translater;
 
         public ClockControler()
-            : this(new TimeTranslater())
+            : this(new TimeTranslaterFR())
         { }
 
         public ClockControler(ITimeTranslater translater)
@@ -31,7 +31,7 @@ namespace klockRepro.Business
         private void InitClockLetters()
         {
             ClockLetters = new ObservableCollection<DisplayLetter>();
-            foreach (char c in _ClockLetters.ToCharArray())
+            foreach (char c in  _translater.ClockLetters.ToCharArray())
             {
                 DisplayLetter l = new DisplayLetter() { Name = c.ToString(), Active = false };
                 ClockLetters.Add(l);

@@ -103,6 +103,8 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Folder Include="Resources\en\" />
+    <Folder Include="Resources\fr\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -112,7 +114,9 @@
     <Compile Include="Business\DisplayLetter.cs" />
     <Compile Include="Business\ITimeTranslater.cs" />
     <Compile Include="Business\IndexLengthWord.cs" />
-    <Compile Include="Business\TimeTranslater.cs" />
+    <Compile Include="Business\DateTimeExt.cs" />
+    <Compile Include="Business\TimeTranslaterEN.cs" />
+    <Compile Include="Business\TimeTranslaterFR.cs" />
     <Compile Include="Common\ActiveColorConverter.cs" />
     <Compile Include="Common\MinuteColorConverter.cs" />
     <Compile Include="MainPage.xaml.cs">

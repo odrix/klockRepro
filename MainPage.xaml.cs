@@ -29,7 +29,7 @@ namespace klockRepro
         public MainPage()
         {
             this.InitializeComponent();
-            controler = new ClockControler();
+            controler = new ClockControler(new TimeTranslaterEN());
             this.DataContext = controler;
 
             controler.CurrentTimeToDisplay();
