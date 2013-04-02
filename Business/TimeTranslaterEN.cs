@@ -77,7 +77,7 @@ namespace klockRepro.Business
 
             result.Add(_ChiffresHeures[time.Hour]);
 
-            if (_ChiffresMinute[time.Minute].Length > 0)
+            if (_ChiffresMinute[time.Minute].Length == 0)
                 result.Add(oclock);
 
             return result.ToArray();
