@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace klockRepro.Business
 {
-    public class TimeTranslaterEN : TimeTranslaterBase,  ITimeTranslater
+    public class TimeTranslaterEN : ITimeTranslater
     {
         public string ClockLetters
         {

@@ -1,4 +1,5 @@
 ﻿using klockRepro.Business;
+using klockRepro.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,7 +22,7 @@ namespace klockRepro
     /// <summary>
     /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : LayoutAwarePage
     {
         DispatcherTimer timer;
         ClockControler controler;
@@ -29,10 +30,10 @@ namespace klockRepro
         public MainPage()
         {
             this.InitializeComponent();
-            controler = new ClockControler(new TimeTranslaterEN());
+            controler = new ClockControler(new TimeTranslaterFR());
             this.DataContext = controler;
 
-            controler.CurrentTimeToDisplay();
+            Refresh();
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(5);
@@ -42,14 +43,25 @@ namespace klockRepro
 
         void timer_Tick(object sender, object e)
         {
+            Refresh();
+        }
+
+        private void Refresh()
+        {
             controler.CurrentTimeToDisplay();
             foreach (DisplayLetter l in controler.ClockLetters)
             {
                 var selectItem = (from s in GrdClock.SelectedItems
-                        where s == l
-                        select s).FirstOrDefault();
+                                  where s == l
+                                  select s).FirstOrDefault();
                 if (selectItem == null && l.Active) GrdClock.SelectedItems.Add(l);
                 else if (selectItem != null && !l.Active) GrdClock.SelectedItems.Remove(l);
+
+                var selectItemSnap = (from s in GrdClockSnap.SelectedItems
+                                  where s == l
+                                  select s).FirstOrDefault();
+                if (selectItemSnap == null && l.Active) GrdClockSnap.SelectedItems.Add(l);
+                else if (selectItemSnap != null && !l.Active) GrdClockSnap.SelectedItems.Remove(l);
             }
         }
 

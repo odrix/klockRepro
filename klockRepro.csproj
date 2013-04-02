@@ -118,7 +118,9 @@
     <Compile Include="Business\TimeTranslaterEN.cs" />
     <Compile Include="Business\TimeTranslaterFR.cs" />
     <Compile Include="Common\ActiveColorConverter.cs" />
+    <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\MinuteColorConverter.cs" />
+    <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
