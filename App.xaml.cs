@@ -1,9 +1,12 @@
-﻿using System;
+﻿using CharmFlyoutLibrary;
+using klockRepro.Business;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -23,6 +26,10 @@ namespace klockRepro
     /// </summary>
     sealed partial class App : Application
     {
+        
+        public ClockControler MainClockControler { get; private set; }
+
+
         /// <summary>
         /// Initialise l'objet d'application de singleton. Il s'agit de la première ligne du code créé
         /// à être exécutée. Elle correspond donc à l'équivalent logique de main() ou WinMain().
@@ -30,6 +37,8 @@ namespace klockRepro
         public App()
         {
             this.InitializeComponent();
+            MainClockControler = new ClockControler();
+            MainClockControler.ChangeTranslater(System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             this.Suspending += OnSuspending;
         }
 
@@ -48,7 +57,8 @@ namespace klockRepro
             if (rootFrame == null)
             {
                 // Créez un Frame utilisable comme contexte de navigation et naviguez jusqu'à la première page
-                rootFrame = new Frame();
+                rootFrame = new CharmFrame { CharmContent = new SettingsCharm() };
+                //rootFrame = new Frame();
 
                 if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

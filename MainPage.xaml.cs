@@ -25,15 +25,14 @@ namespace klockRepro
     public sealed partial class MainPage : LayoutAwarePage
     {
         DispatcherTimer timer;
-        ClockControler controler;
 
         public MainPage()
         {
             this.InitializeComponent();
-            controler = new ClockControler(new TimeTranslaterFR());
-            this.DataContext = controler;
+            ((App)App.Current).MainClockControler.PropertyChanged += MainClockControler_PropertyChanged;
 
-            Refresh();
+            this.DataContext = ((App)App.Current).MainClockControler;
+            ((App)App.Current).MainClockControler.CurrentTimeToDisplay(true);
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(5);
@@ -41,25 +40,34 @@ namespace klockRepro
             timer.Start();
         }
 
+
+        void MainClockControler_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "ClockLetters")
+                Refresh();
+        }
+
+
         void timer_Tick(object sender, object e)
         {
-            Refresh();
+            ((App)App.Current).MainClockControler.CurrentTimeToDisplay();
         }
 
         private void Refresh()
         {
-            controler.CurrentTimeToDisplay();
-            foreach (DisplayLetter l in controler.ClockLetters)
+            foreach (DisplayLetter l in ((App)App.Current).MainClockControler.ClockLetters)
             {
+                // le gridview pour la vue normal
                 var selectItem = (from s in GrdClock.SelectedItems
                                   where s == l
                                   select s).FirstOrDefault();
                 if (selectItem == null && l.Active) GrdClock.SelectedItems.Add(l);
                 else if (selectItem != null && !l.Active) GrdClock.SelectedItems.Remove(l);
 
+                // le gridview pour la vue Snap
                 var selectItemSnap = (from s in GrdClockSnap.SelectedItems
-                                  where s == l
-                                  select s).FirstOrDefault();
+                                      where s == l
+                                      select s).FirstOrDefault();
                 if (selectItemSnap == null && l.Active) GrdClockSnap.SelectedItems.Add(l);
                 else if (selectItemSnap != null && !l.Active) GrdClockSnap.SelectedItems.Remove(l);
             }

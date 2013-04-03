@@ -28,9 +28,27 @@ namespace klockRepro.Business
             InitClockLetters();
         }
 
+        public void ChangeTranslater(string culture)
+        {
+            switch (culture.ToLower())
+            {
+                case "fr" :
+                    _translater = new TimeTranslaterFR();
+                    break;
+                case "en":
+                    _translater = new TimeTranslaterEN();
+                    break;
+            }
+            InitClockLetters();
+        }
+
         private void InitClockLetters()
         {
-            ClockLetters = new ObservableCollection<DisplayLetter>();
+            if (ClockLetters == null)
+                ClockLetters = new ObservableCollection<DisplayLetter>();
+            else
+                ClockLetters.Clear();
+
             foreach (char c in  _translater.ClockLetters.ToCharArray())
             {
                 DisplayLetter l = new DisplayLetter() { Name = c.ToString(), Active = false };
@@ -39,14 +57,14 @@ namespace klockRepro.Business
         }
 
 
-        public void CurrentTimeToDisplay()
+        public void CurrentTimeToDisplay(bool forceCalcul = false )
         {
             DateTime currentTime = DateTime.Now;
 
             MinutesRestantes = currentTime.Minute % 5;
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs("MinutesRestantes"));
 
-            if (MinutesRestantes == 0 || !_lastTime.HasValue) // ça n'a pas changé depuis le dernier passage
+            if (MinutesRestantes == 0 || !_lastTime.HasValue || forceCalcul) // ça n'a pas changé depuis le dernier passage
             {
                 Word[] words = _translater.Translate(currentTime);
                 foreach (DisplayLetter l in ClockLetters) l.Active = false;
@@ -57,6 +75,7 @@ namespace klockRepro.Business
                         ClockLetters[i].Active = true;
                     }
                 }
+                if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs("ClockLetters"));
             }
 
             _lastTime = currentTime;
