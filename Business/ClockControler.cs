@@ -28,6 +28,20 @@ namespace klockRepro.Business
             InitClockLetters();
         }
 
+        private void InitClockLetters()
+        {
+            if (ClockLetters == null)
+                ClockLetters = new ObservableCollection<DisplayLetter>();
+            else
+                ClockLetters.Clear();
+
+            foreach (char c in _translater.ClockLetters.ToCharArray())
+            {
+                DisplayLetter l = new DisplayLetter() { Name = c.ToString(), Active = false };
+                ClockLetters.Add(l);
+            }
+        }
+
         public void ChangeTranslater(string culture)
         {
             switch (culture.ToLower())
@@ -42,19 +56,7 @@ namespace klockRepro.Business
             InitClockLetters();
         }
 
-        private void InitClockLetters()
-        {
-            if (ClockLetters == null)
-                ClockLetters = new ObservableCollection<DisplayLetter>();
-            else
-                ClockLetters.Clear();
-
-            foreach (char c in  _translater.ClockLetters.ToCharArray())
-            {
-                DisplayLetter l = new DisplayLetter() { Name = c.ToString(), Active = false };
-                ClockLetters.Add(l);
-            }
-        }
+       
 
 
         public void CurrentTimeToDisplay(bool forceCalcul = false )

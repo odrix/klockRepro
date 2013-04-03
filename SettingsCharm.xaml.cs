@@ -24,7 +24,7 @@ namespace klockRepro
         {
             this.InitializeComponent();
 
-            cboLanguage.SelectedIndex = CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToLower() == "fr" ? 0 : 1;
+            cboLanguage.SelectedIndex = CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToLower() == "fr" ? 1 : 0;
 
             SettingsPane.GetForCurrentView().CommandsRequested += CommandsRequested;
         }

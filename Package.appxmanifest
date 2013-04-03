@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="45805Odrix.Ilestlheure" Publisher="CN=FC2A7F2C-5167-446B-8392-AB45EBA6B7B4" Version="1.0.0.1" />
+  <Identity Name="45805Odrix.Ilestlheure" Publisher="CN=FC2A7F2C-5167-446B-8392-AB45EBA6B7B4" Version="1.0.0.2" />
   <Properties>
     <DisplayName>Il est l'heure</DisplayName>
     <PublisherDisplayName>Odrix</PublisherDisplayName>
