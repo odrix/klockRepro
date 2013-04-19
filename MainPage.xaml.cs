@@ -37,7 +37,6 @@ namespace klockRepro
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += timer_Tick;
-            timer.Start();
         }
 
 
@@ -73,13 +72,15 @@ namespace klockRepro
             }
         }
 
-        /// <summary>
-        /// Invoqué lorsque cette page est sur le point d'être affichée dans un frame.
-        /// </summary>
-        /// <param name="e">Données d'événement décrivant la manière dont l'utilisateur a accédé à cette page. La propriété Parameter
-        /// est généralement utilisée pour configurer la page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void LoadState(object navigationParameter, Dictionary<string, object> pageState)
         {
+            timer.Start();
+        }
+
+        private void btnChrono_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Stop();
+            this.Frame.Navigate(typeof(ChronoPage));
         }
     }
 }

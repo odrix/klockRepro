@@ -114,8 +114,12 @@
     <Compile Include="Business\ITimeTranslater.cs" />
     <Compile Include="Business\IndexLengthWord.cs" />
     <Compile Include="Business\DateTimeExt.cs" />
+    <Compile Include="Business\ChronoControler.cs" />
     <Compile Include="Business\TimeTranslaterEN.cs" />
     <Compile Include="Business\TimeTranslaterFR.cs" />
+    <Compile Include="ChronoPage.xaml.cs">
+      <DependentUpon>ChronoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Common\ActiveColorConverter.cs" />
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\MinuteColorConverter.cs" />
@@ -149,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ChronoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Common\StandardStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -1,6 +1,6 @@
 ﻿<common:LayoutAwarePage
-    x:Name="PageTime"
-    x:Class="klockRepro.MainPage"
+    x:Name="PageChrono"
+    x:Class="klockRepro.ChronoPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:klockRepro"
@@ -12,7 +12,6 @@
 
     <Page.Resources>
         <common:ActiveColorConverter x:Key="ActiveColorConverter" />
-        <common:MinuteColorConverter x:Key="MinuteColorConverter" />
 
         <Style x:Key="LetterItemStyle" TargetType="GridViewItem">
             <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
@@ -147,6 +146,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
     </Page.Resources>
 
     <Page.BottomAppBar>
@@ -157,125 +157,35 @@
                     <ColumnDefinition Width="50*" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
+                    <Button x:Name="btnStart" Content="Start" Click="btnStart_Click" />
+                    <Button x:Name="btnPause" Content="Pause" Click="btnPause_Click" />
+                    <Button x:Name="btnEnd" Content="End"  Click="btnEnd_Click"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" >
-                    <Button x:Name="btnChrono" Content="Chrono" Click="btnChrono_Click" />
+                    <Button x:Name="btnTime" Content="Time" Click="btnTime_Click" />
                 </StackPanel>
             </Grid>
         </AppBar>
     </Page.BottomAppBar>
 
     <Grid x:Name="gridMain" Margin="30">
-
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="GridContent"  >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="25" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="25"/>
-                <ColumnDefinition Width="780"/>
-                <ColumnDefinition Width="25"/>
-            </Grid.ColumnDefinitions>
-
-            <GridView x:Name="GrdClock" ItemsSource="{Binding ClockLetters}" Grid.Column="1" Grid.Row="1" 
-                  HorizontalAlignment="Center" VerticalAlignment="Center" SelectionMode="Multiple" IsHitTestVisible="False" 
-                  ItemContainerStyle="{StaticResource LetterItemStyle}" >
+            <GridView x:Name="GrdChrono" ItemsSource="{Binding DurationToDisplay}"
+                  HorizontalAlignment="Center" VerticalAlignment="Center" SelectionMode="None" IsHitTestVisible="False"
+                      ItemContainerStyle="{StaticResource LetterItemStyle}">
                 <GridView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock x:Name="textBlock" Text="{Binding Name}" Width="50" Height="50"
-                               FontSize="45" Margin="8 4" TextAlignment="Center">
+                        <TextBlock x:Name="textBlock" Text="{Binding Name}" Width="12" Height="12"
+                               FontSize="10" Margin="1" TextAlignment="Center" Foreground="{Binding Active, Converter={StaticResource ActiveColorConverter}}">
                         </TextBlock>
                     </DataTemplate>
                 </GridView.ItemTemplate>
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapGrid Width="760" Orientation="Horizontal" x:Name="wrpGridPanel"/>
+                        <WrapGrid Width="1008" Height="100" Orientation="Vertical" x:Name="wrpGridPanel"/>
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
             </GridView>
-
-            <Ellipse Grid.Column="0" Grid.Row="0" Width="20" Height="20" 
-                 HorizontalAlignment="Center" VerticalAlignment="Center"
-                 Fill="{Binding MinutesRestantes, ConverterParameter=1, Converter={StaticResource MinuteColorConverter}}" />
-            <Ellipse Grid.Column="2" Grid.Row="0" Width="20" Height="20" 
-                 HorizontalAlignment="Center" VerticalAlignment="Center"
-                 Fill="{Binding MinutesRestantes, ConverterParameter=2, Converter={StaticResource MinuteColorConverter}}" />
-            <Ellipse Grid.Column="2" Grid.Row="2" Width="20" Height="20" 
-                 HorizontalAlignment="Center" VerticalAlignment="Center"
-                 Fill="{Binding MinutesRestantes, ConverterParameter=3, Converter={StaticResource MinuteColorConverter}}" />
-            <Ellipse Grid.Column="0" Grid.Row="2" Width="20" Height="20" 
-                 HorizontalAlignment="Center" VerticalAlignment="Center"
-                 Fill="{Binding MinutesRestantes, ConverterParameter=4, Converter={StaticResource MinuteColorConverter}}"  />
         </Grid>
-
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="GridContentSnap" Visibility="Collapsed"  >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="100" />
-            </Grid.RowDefinitions>
-
-            <GridView x:Name="GrdClockSnap" ItemsSource="{Binding ClockLetters}"  
-                  HorizontalAlignment="Center" VerticalAlignment="Center" SelectionMode="Multiple" IsHitTestVisible="False" 
-                  ItemContainerStyle="{StaticResource LetterItemStyle}" >
-                <GridView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock x:Name="textBlock" Text="{Binding Name}" Width="19" Height="22"
-                               FontSize="18" Margin="4" TextAlignment="Center">
-                        </TextBlock>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-                <GridView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapGrid Width="310" Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
-            </GridView>
-
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Margin="0 35" VerticalAlignment="Top">
-                <Ellipse Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10 5"
-                 Fill="{Binding MinutesRestantes, ConverterParameter=1, Converter={StaticResource MinuteColorConverter}}" />
-                <Ellipse Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10 5"
-                 Fill="{Binding MinutesRestantes, ConverterParameter=2, Converter={StaticResource MinuteColorConverter}}" />
-                <Ellipse Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10 5"
-                 Fill="{Binding MinutesRestantes, ConverterParameter=3, Converter={StaticResource MinuteColorConverter}}" />
-                <Ellipse Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10 5"
-                 Fill="{Binding MinutesRestantes, ConverterParameter=4, Converter={StaticResource MinuteColorConverter}}"  />
-            </StackPanel>
-        </Grid>
-
-        <VisualStateManager.VisualStateGroups>
-
-            <!-- Visual states reflect the application's view state -->
-            <VisualStateGroup x:Name="ApplicationViewStates">
-                <VisualState x:Name="FullScreenLandscape"/>
-                <VisualState x:Name="Filled"/>
-
-                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
-                <VisualState x:Name="FullScreenPortrait" />
-
-                <!--
-                    The back button and title have different styles when snapped, and the list representation is substituted
-                    for the grid displayed in all other view states
-                -->
-                <VisualState x:Name="Snapped">
-                    <Storyboard>
-
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="gridMain" Storyboard.TargetProperty="Margin">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="3" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridContent" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="GridContentSnap" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-
-
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
     </Grid>
 </common:LayoutAwarePage>
