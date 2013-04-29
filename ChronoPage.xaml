@@ -182,7 +182,7 @@
                 </GridView.ItemTemplate>
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapGrid Width="1008" Height="100" Orientation="Vertical" x:Name="wrpGridPanel"/>
+                        <WrapGrid Width="1008" Height="130" Orientation="Vertical" x:Name="wrpGridPanel"/>
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
             </GridView>

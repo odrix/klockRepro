@@ -11,7 +11,8 @@ namespace klockRepro.Business
     {
         private Dictionary<char, int[,]> numericDictionnary;
         private TimeSpan Duration;
-        private TimeSpan LastDuration;
+        private DateTime StartTime;
+        private DateTime LastTime;
 
         public ObservableCollection<DisplayLetter> DurationToDisplay { get; private set; }
 
@@ -21,6 +22,8 @@ namespace klockRepro.Business
             numericDictionnary = new Dictionary<char, int[,]>();
             numericDictionnary.Add('0', new int[,] {{-1,-1,0,0,0,0,0,-1,-1,-1},
                                                     {-1,0,0,-1,-1,-1,0,0,-1,-1},
+                                                    {0,0,-1,-1,-1,-1,-1,0,0,-1},
+                                                    {0,0,-1,-1,-1,-1,-1,0,0,-1},
                                                     {0,0,-1,-1,-1,-1,-1,0,0,-1},
                                                     {0,0,-1,-1,-1,-1,-1,0,0,-1},
                                                     {0,0,-1,-1,-1,-1,-1,0,0,-1},
@@ -34,13 +37,17 @@ namespace klockRepro.Business
                                                     {-1,-1,-1,-1,1,1,-1,-1,-1,-1},
                                                     {-1,-1,-1,-1,1,1,-1,-1,-1,-1},
                                                     {-1,-1,-1,-1,1,1,-1,-1,-1,-1},
+                                                    {-1,-1,-1,-1,1,1,-1,-1,-1,-1},
+                                                    {-1,-1,-1,-1,1,1,-1,-1,-1,-1},
                                                     {-1,-1,1,1,1,1,1,1,-1,-1}
                                    });
 
             numericDictionnary.Add('2', new int[,] {{-1,-1,2,2,2,2,2,2,2,-1},
                                                     {-1,2,2,-1,-1,-1,-1,-1,2,2},
                                                     {-1,-1,-1,-1,-1,-1,-1,-1,2,2},
+                                                    {-1,-1,-1,-1,-1,-1,-1,-1,2,2},
                                                     {-1,-1,2,2,2,2,2,2,2,-1},
+                                                    {-1,2,2,-1,-1,-1,-1,-1,-1,-1},
                                                     {-1,2,2,-1,-1,-1,-1,-1,-1,-1},
                                                     {-1,2,2,-1,-1,-1,-1,-1,-1,-1},
                                                     {-1,2,2,2,2,2,2,2,2,2}
@@ -49,7 +56,9 @@ namespace klockRepro.Business
             numericDictionnary.Add('3', new int[,] {{-1,-1,3,3,3,3,3,3,3,-1},
                                                     {-1,3,3,-1,-1,-1,-1,-1,3,3},
                                                     {-1,-1,-1,-1,-1,-1,-1,-1,3,3},
+                                                    {-1,-1,-1,-1,-1,-1,-1,-1,3,3},
                                                     {-1,-1,3,3,3,3,3,3,3,-1},
+                                                    {-1,-1,-1,-1,-1,-1,-1,-1,3,3},
                                                     {-1,-1,-1,-1,-1,-1,-1,-1,3,3},
                                                     {-1,3,3,-1,-1,-1,-1,-1,3,3},
                                                     {-1,-1,3,3,3,3,3,3,3,-1}
@@ -61,13 +70,17 @@ namespace klockRepro.Business
                                                     {-1,4,4,-1,-1,-1,-1,4,4,-1},
                                                     {-1,4,4,4,4,4,4,4,4,4},
                                                     {-1,-1,-1,-1,-1,-1,-1,4,4,-1},
+                                                    {-1,-1,-1,-1,-1,-1,-1,4,4,-1},
+                                                    {-1,-1,-1,-1,-1,-1,-1,4,4,-1},
                                                     {-1,-1,-1,-1,-1,-1,-1,4,4,-1}
                                     });
 
             numericDictionnary.Add('5', new int[,] {{-1,-1,5,5,5,5,5,5,5,5},
                                                     {-1,-1,5,5,-1,-1,-1,-1,-1,-1},
                                                     {-1,-1,5,5,-1,-1,-1,-1,-1,-1},
+                                                    {-1,-1,5,5,-1,-1,-1,-1,-1,-1},
                                                     {-1,-1,5,5,5,5,5,5,5,-1},
+                                                    {-1,-1,-1,-1,-1,-1,-1,-1,5,5},
                                                     {-1,-1,-1,-1,-1,-1,-1,-1,5,5},
                                                     {-1,-1,5,5,-1,-1,-1,-1,5,5},
                                                     {-1,-1,-1,5,5,5,5,5,5,-1}
@@ -76,7 +89,9 @@ namespace klockRepro.Business
             numericDictionnary.Add('6', new int[,] {{-1,-1,6,6,6,6,6,6,6,-1},
                                                     {-1,6,6,-1,-1,-1,-1,-1,6,6},
                                                     {-1,6,6,-1,-1,-1,-1,-1,-1,-1},
+                                                    {-1,6,6,-1,-1,-1,-1,-1,-1,-1},
                                                     {-1,6,6,6,6,6,6,6,6,-1},
+                                                    {-1,6,6,-1,-1,-1,-1,-1,6,6},
                                                     {-1,6,6,-1,-1,-1,-1,-1,6,6},
                                                     {-1,6,6,-1,-1,-1,-1,-1,6,6},
                                                     {-1,-1,6,6,6,6,6,6,6,-1}
@@ -88,13 +103,17 @@ namespace klockRepro.Business
                                                     {-1,-1,-1,-1,7,7,-1,-1,-1,-1},
                                                     {-1,-1,-1,7,7,-1,-1,-1,-1,-1},
                                                     {-1,-1,-1,7,7,-1,-1,-1,-1,-1},
+                                                    {-1,-1,-1,7,7,-1,-1,-1,-1,-1},
+                                                    {-1,-1,-1,7,7,-1,-1,-1,-1,-1},
                                                     {-1,-1,-1,7,7,-1,-1,-1,-1,-1}
                                     });
 
             numericDictionnary.Add('8', new int[,] {{-1,-1,8,8,8,8,8,8,8,-1},
                                                     {-1,8,8,-1,-1,-1,-1,-1,8,8},
                                                     {-1,8,8,-1,-1,-1,-1,-1,8,8},
+                                                    {-1,8,8,-1,-1,-1,-1,-1,8,8},
                                                     {-1,-1,8,8,8,8,8,8,8,-1},
+                                                    {-1,8,8,-1,-1,-1,-1,-1,8,8},
                                                     {-1,8,8,-1,-1,-1,-1,-1,8,8},
                                                     {-1,8,8,-1,-1,-1,-1,-1,8,8},
                                                     {-1,-1,8,8,8,8,8,8,8,-1}
@@ -103,7 +122,9 @@ namespace klockRepro.Business
             numericDictionnary.Add('9', new int[,] {{-1,-1,9,9,9,9,9,9,9,-1},
                                                     {-1,9,9,-1,-1,-1,-1,-1,9,9},
                                                     {-1,9,9,-1,-1,-1,-1,-1,9,9},
+                                                    {-1,9,9,-1,-1,-1,-1,-1,9,9},
                                                     {-1,-1,9,9,9,9,9,9,9,9},
+                                                    {-1,-1,-1,-1,-1,-1,-1,-1,9,9},
                                                     {-1,-1,-1,-1,-1,-1,-1,-1,9,9},
                                                     {-1,9,9,-1,-1,-1,-1,-1,9,9},
                                                     {-1,-1,9,9,9,9,9,9,9,-1}
@@ -112,6 +133,8 @@ namespace klockRepro.Business
             numericDictionnary.Add(':', new int[,] {{-1,-1,-2,-2,-1,-1},
                                                     {-1,-2,-2,-2,-2,-1},
                                                     {-1,-1,-2,-2,-1,-1},
+                                                    {-1,-1,-1,-1,-1,-1},
+                                                    {-1,-1,-1,-1,-1,-1},
                                                     {-1,-1,-1,-1,-1,-1},
                                                     {-1,-1,-2,-2,-1,-1},
                                                     {-1,-2,-2,-2,-2,-1},
@@ -136,17 +159,85 @@ namespace klockRepro.Business
             await UpdateDisplayLettersSecondeAsync(Duration);
         }
 
-        public async void Reinit()
+        public async void TryIncrementeSeconde()
         {
+            if (DateTime.Now.Subtract(LastTime).TotalMilliseconds > 850)
+            {
+                IncrementeSeconde();
+                LastTime = DateTime.Now;
+            }
+        }
+
+        public async void Start()
+        {
+            if (StartTime == DateTime.MinValue)
+            {
+                StartTime = DateTime.Now;
+                Duration = TimeSpan.FromSeconds(0);
+                await UpdateDisplayLettersSecondeAsync(Duration);
+            }
+            LastTime = DateTime.Now;
+        }
+
+        public void Pause()
+        {
+        }
+
+        public  void Stop(bool andDisplay = false)
+        {
+            StartTime = LastTime = DateTime.MinValue;
             Duration = TimeSpan.FromSeconds(0);
-            LastDuration = Duration;
-            await GetDisplayLettersAsync(Duration);
+            //if(andDisplay)
+            //     UpdateDisplayLettersSecondeAsync(Duration);
         }
 
         private async Task UpdateDisplayLettersSecondeAsync(TimeSpan duration)
         {
-            RemoveSeconde();
-            IEnumerable<int[,]> chiffres = Convert(duration.ToString("ss"));
+            IEnumerable<int[,]> chiffres = null;
+
+            if (duration.Minutes == 0 && duration.Seconds == 0)
+            {
+                if (duration.Hours % 10 == 0)
+                {
+                    RemoveDigits(DIGITS_2_HEURE);
+                    chiffres = Convert(duration.ToString("hh':'mm':'ss"));
+                }
+                else
+                {
+                    RemoveDigits(DIGITS_1_HEURE);
+                    chiffres = Convert(duration.ToString("hh':'mm':'ss").Substring(1));
+                }
+            }
+            else
+            {
+                if (duration.Seconds == 0)
+                {
+                    if (duration.Minutes % 10 == 0)
+                    {
+                        RemoveDigits(DIGITS_2_MINUTE);
+                        chiffres = Convert(duration.ToString("mm':'ss"));
+                    }
+                    else
+                    {
+                        RemoveDigits(DIGITS_1_MINUTE);
+                        chiffres = Convert(duration.ToString("mm':'ss").Substring(1));
+                    }
+                }
+                else
+                {
+                    if (duration.Seconds % 10 == 0)
+                    {
+                        RemoveDigits(DIGITS_2_SECONDE);
+                        chiffres = Convert(duration.ToString("ss"));
+                    }
+                    else
+                    {
+                        RemoveDigits(DIGITS_1_SECONDE);
+                        chiffres = Convert(duration.ToString("ss").Substring(1));
+                    }
+                }
+            }
+            
             AddChiffresToDisplayLetter(chiffres);
         }
 
@@ -159,7 +250,7 @@ namespace klockRepro.Business
 
         private void AddChiffresToDisplayLetter(IEnumerable<int[,]> chiffres)
         {
-            foreach (int[,] chiffre in chiffres)
+            foreach (int[,] chiffre in chiffres.AsParallel())
             {
                 for (int j = 0; j < chiffre.GetLength(1); j++)
                 {
@@ -184,11 +275,18 @@ namespace klockRepro.Business
             }
         }
 
-        private void RemoveSeconde()
+        private const int DIGITS_2_SECONDE = 468;
+        private const int DIGITS_1_SECONDE = 558;
+        private const int DIGITS_2_MINUTE = 234;
+        private const int DIGITS_1_MINUTE = 324;
+        private const int DIGITS_2_HEURE = 0;
+        private const int DIGITS_1_HEURE = 90;
+
+        private void RemoveDigits(int FromNbDigits,  int ToNbDigits = 0)
         {
-            while (DurationToDisplay.Count > 364)
+            while (DurationToDisplay.Count > FromNbDigits)
             {
-                DurationToDisplay.RemoveAt(364);
+                DurationToDisplay.RemoveAt(FromNbDigits);
             }
         }
 

@@ -35,41 +35,53 @@ namespace klockRepro
             controler = new ChronoControler();
 
             chrono = new DispatcherTimer();
-            chrono.Interval = TimeSpan.FromSeconds(1);
+            chrono.Interval = TimeSpan.FromMilliseconds(300);
             chrono.Tick += chrono_Tick;
         }
 
         void chrono_Tick(object sender, object e)
         {
-            controler.IncrementeSeconde();
+            controler.TryIncrementeSeconde();
         }
 
         protected override void LoadState(object navigationParameter, Dictionary<string, object> pageState)
         {
-            controler.Reinit();
+            controler.Stop(true);
             GrdChrono.DataContext = controler;
         }
 
         private void btnTime_Click(object sender, RoutedEventArgs e)
         {
+            if (chrono.IsEnabled)
+            {
+                controler.Stop();
+                chrono.Stop();
+            }
             GoBack();
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            if(!chrono.IsEnabled)
+            if (!chrono.IsEnabled)
+            {
+                controler.Start();
                 chrono.Start();
+            }
+            this.BottomAppBar.IsOpen = false;
         }
 
         private void btnPause_Click(object sender, RoutedEventArgs e)
         {
             chrono.Stop();
+            controler.Pause();
+            this.BottomAppBar.IsOpen = false;
         }
 
         private void btnEnd_Click(object sender, RoutedEventArgs e)
         {
-            controler.Reinit();
             chrono.Stop();
+            controler.Stop();
+            this.BottomAppBar.IsOpen = false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
