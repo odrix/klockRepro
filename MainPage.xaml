@@ -159,7 +159,7 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" >
-                    <Button x:Name="btnChrono" Content="Chrono" Click="btnChrono_Click" />
+                    <Button x:Name="btnChrono" Content="⏱" Click="btnChrono_Click" AutomationProperties.Name="Chrono" Style="{StaticResource AppBarButtonStyle}" />
                 </StackPanel>
             </Grid>
         </AppBar>

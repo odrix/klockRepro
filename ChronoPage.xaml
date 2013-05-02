@@ -156,13 +156,14 @@
                     <ColumnDefinition Width="50*" />
                     <ColumnDefinition Width="50*" />
                 </Grid.ColumnDefinitions>
+                
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
-                    <Button x:Name="btnStart" Content="Start" Click="btnStart_Click" />
-                    <Button x:Name="btnPause" Content="Pause" Click="btnPause_Click" />
-                    <Button x:Name="btnEnd" Content="End"  Click="btnEnd_Click"/>
+                    <Button x:Name="btnStart" Content="" AutomationProperties.Name="Start" Click="btnStart_Click" Style="{StaticResource AppBarButtonStyle}" />
+                    <Button x:Name="btnPause" Content="" AutomationProperties.Name="Pause" Click="btnPause_Click" Style="{StaticResource AppBarButtonStyle}" />
+                    <Button x:Name="btnEnd" Content="" AutomationProperties.Name="End"  Click="btnEnd_Click" Style="{StaticResource AppBarButtonStyle}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" >
-                    <Button x:Name="btnTime" Content="Time" Click="btnTime_Click" />
+                    <Button x:Name="btnTime" Content="" AutomationProperties.Name="Time" Click="btnTime_Click" Style="{StaticResource AppBarButtonStyle}" />
                 </StackPanel>
             </Grid>
         </AppBar>

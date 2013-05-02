@@ -141,6 +141,17 @@ namespace klockRepro.Business
                                                     {-1,-1,-2,-2,-1,-1}
                                     });
 
+            numericDictionnary.Add('.', new int[,] {{-1,-1,-1,-1,-1,-1},
+                                                    {-1,-1,-1,-1,-1,-1},
+                                                    {-1,-1,-1,-1,-1,-1},
+                                                    {-1,-1,-1,-1,-1,-1},
+                                                    {-1,-1,-1,-1,-1,-1},
+                                                    {-1,-1,-1,-1,-1,-1},
+                                                    {-1,-1,-2,-2,-1,-1},
+                                                    {-1,-2,-2,-2,-2,-1},
+                                                    {-1,-1,-2,-2,-1,-1}
+                                    });
+
 
         }
 
@@ -195,21 +206,21 @@ namespace klockRepro.Business
         {
             IEnumerable<int[,]> chiffres = null;
 
-            if (duration.Minutes == 0 && duration.Seconds == 0)
-            {
-                if (duration.Hours % 10 == 0)
-                {
-                    RemoveDigits(DIGITS_2_HEURE);
-                    chiffres = Convert(duration.ToString("hh':'mm':'ss"));
-                }
-                else
-                {
-                    RemoveDigits(DIGITS_1_HEURE);
-                    chiffres = Convert(duration.ToString("hh':'mm':'ss").Substring(1));
-                }
-            }
-            else
-            {
+            //if (duration.Minutes == 0 && duration.Seconds == 0)
+            //{
+            //    if (duration.Hours % 10 == 0)
+            //    {
+            //        RemoveDigits(DIGITS_2_HEURE);
+            //        chiffres = Convert(duration.ToString("hh':'mm':'ss"));
+            //    }
+            //    else
+            //    {
+            //        RemoveDigits(DIGITS_1_HEURE);
+            //        chiffres = Convert(duration.ToString("hh':'mm':'ss").Substring(1));
+            //    }
+            //}
+            //else
+            //{
                 if (duration.Seconds == 0)
                 {
                     if (duration.Minutes % 10 == 0)
@@ -236,7 +247,7 @@ namespace klockRepro.Business
                         chiffres = Convert(duration.ToString("ss").Substring(1));
                     }
                 }
-            }
+            //}
             
             AddChiffresToDisplayLetter(chiffres);
         }
