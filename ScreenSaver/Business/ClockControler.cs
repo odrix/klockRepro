@@ -5,16 +5,16 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using klockRepro.Common;
 
 namespace klockRepro.Business
 {
     public class ClockControler : INotifyPropertyChanged
     {
-        
-        //""
         private DateTime? _lastTime = null;
         public ObservableCollection<DisplayLetter> ClockLetters { get; set; }
         public int MinutesRestantes { get; private set; }
+        public DisplayProperties DisplayProperties {get; private set;}
 
         ITimeTranslater _translater;
 
@@ -26,6 +26,7 @@ namespace klockRepro.Business
         {
             _translater = translater;
             InitClockLetters();
+            DisplayProperties = new DisplayProperties();
         }
 
         private void InitClockLetters()

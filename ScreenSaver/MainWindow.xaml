@@ -9,7 +9,7 @@
 
     <Window.Resources>
         <common:MinuteColorConverter x:Key="MinuteColorConverter" />
-        
+
         <SolidColorBrush x:Key="BackgroundColorTheme" Color="Black" />
         
         <Style TargetType="TextBlock" x:Key="LetterStyle" >
@@ -57,8 +57,7 @@
         </Style>
     </Window.Resources>
 
-    <Grid x:Name="gridMain" Margin="30">
-
+    <Grid x:Name="gridMain" Margin="{Binding DisplayProperties.MainMargin}">
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="GridContent"  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="25" />

@@ -79,6 +79,7 @@
     <Compile Include="Business\ClockControler.cs" />
     <Compile Include="Business\DateTimeExt.cs" />
     <Compile Include="Business\DisplayLetter.cs" />
+    <Compile Include="Common\DisplayProperties.cs" />
     <Compile Include="Business\IndexLengthWord.cs" />
     <Compile Include="Business\ITimeTranslater.cs" />
     <Compile Include="Business\TimeTranslaterEN.cs" />
