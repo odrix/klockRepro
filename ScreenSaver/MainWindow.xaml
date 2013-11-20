@@ -1,0 +1,109 @@
+﻿<Window x:Class="ScreenSaver.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:common="clr-namespace:klockRepro.Common"
+        Title="MainWindow"
+        Background="Black" Foreground="White" WindowStyle="None" ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" Focusable="true" IsTabStop="False"
+        KeyDown="Key_Close" TouchDown="Touch_Close" >
+
+    <Window.Resources>
+        <common:MinuteColorConverter x:Key="MinuteColorConverter" />
+        
+        <SolidColorBrush x:Key="BackgroundColorTheme" Color="Black" />
+        
+        <Style TargetType="TextBlock" x:Key="LetterStyle" >
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Active}" Value="True">
+                    <Setter Property="Foreground" Value="#FFFFFFFF" />
+                        <!--<Setter.Value>
+                        <BeginStoryboard>
+                            <Storyboard AutoReverse="False" FillBehavior="HoldEnd" BeginTime="0:0:0.75" 
+                                        Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="{x:Null}">
+                                <ColorAnimationUsingKeyFrames>
+                                    <EasingColorKeyFrame KeyTime="0" Value="#FF424242"/>
+                                    <EasingColorKeyFrame KeyTime="0:0:1.5" Value="#FFFFFFFF"/>
+                                </ColorAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                        </Setter.Value>
+                    </Setter>-->
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="LetterItemStyle" TargetType="ListViewItem"  >
+            <Setter Property="Background" Value="{StaticResource BackgroundColorTheme}" />
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <Border x:Name="OuterContainer">
+                            <Grid x:Name="ReorderHintContent" Background="Transparent">
+                                <Border x:Name="ContentContainer">
+                                    <Grid x:Name="InnerDragContent">
+                                        <ContentPresenter x:Name="contentPresenter" 
+                                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                          Margin="{TemplateBinding Padding}" 
+                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                                          <!--ContentTransitions="{TemplateBinding ContentTransitions}" />-->
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid x:Name="gridMain" Margin="30">
+
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="GridContent"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="780"/>
+                <ColumnDefinition Width="25"/>
+            </Grid.ColumnDefinitions>
+
+            <ListView x:Name="GrdClock" ItemsSource="{Binding ClockLetters}" Grid.Column="1" Grid.Row="1" 
+                        HorizontalAlignment="Center" VerticalAlignment="Center" SelectionMode="Multiple" IsHitTestVisible="False"
+                        ItemContainerStyle="{StaticResource LetterItemStyle}" 
+                        Background="{DynamicResource BackgroundColorTheme}" BorderBrush="{DynamicResource BackgroundColorTheme}" 
+                        Foreground="#FF424242" >
+                <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="textBlock" Text="{Binding Name}" Width="50" Height="50"
+                               FontSize="45" Margin="8 4" TextAlignment="Center"
+                               Style="{StaticResource LetterStyle}">
+                            </TextBlock>
+                        </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel  Width="760" Orientation="Horizontal" x:Name="wrpGridPanel"/>
+                        </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+
+            <Ellipse Grid.Column="0" Grid.Row="0" Width="20" Height="20" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center"
+                 Fill="{Binding MinutesRestantes, ConverterParameter=1, Converter={StaticResource MinuteColorConverter}}" />
+            <Ellipse Grid.Column="2" Grid.Row="0" Width="20" Height="20" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center"
+                 Fill="{Binding MinutesRestantes, ConverterParameter=2, Converter={StaticResource MinuteColorConverter}}" />
+            <Ellipse Grid.Column="2" Grid.Row="2" Width="20" Height="20" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center"
+                 Fill="{Binding MinutesRestantes, ConverterParameter=3, Converter={StaticResource MinuteColorConverter}}" />
+            <Ellipse Grid.Column="0" Grid.Row="2" Width="20" Height="20" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center"
+                 Fill="{Binding MinutesRestantes, ConverterParameter=4, Converter={StaticResource MinuteColorConverter}}"  />
+        </Grid>
+
+    </Grid>
+</Window>
