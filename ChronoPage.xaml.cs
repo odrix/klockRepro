@@ -26,16 +26,16 @@ namespace klockRepro
     public sealed partial class ChronoPage : LayoutAwarePage, INotifyPropertyChanged
     {
         DispatcherTimer chrono;
-        ChronoControler controler;
+        ChronoControlerBis controler;
 
         public ChronoPage()
         {
             this.InitializeComponent();
 
-            controler = new ChronoControler();
+            controler = new ChronoControlerBis();
 
             chrono = new DispatcherTimer();
-            chrono.Interval = TimeSpan.FromMilliseconds(300);
+            chrono.Interval = TimeSpan.FromMilliseconds(200);
             chrono.Tick += chrono_Tick;
         }
 
@@ -47,7 +47,7 @@ namespace klockRepro
         protected override void LoadState(object navigationParameter, Dictionary<string, object> pageState)
         {
             controler.Stop(true);
-            GrdChrono.DataContext = controler;
+            GridContent.DataContext = controler;
         }
 
         private void btnTime_Click(object sender, RoutedEventArgs e)

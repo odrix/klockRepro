@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace klockRepro.Business
 {
-    public class ChronoControler
+    public class ChronoControler : klockRepro.Business.IChronoControler
     {
         private Dictionary<char, int[,]> numericDictionnary;
         private TimeSpan Duration;
@@ -18,6 +18,7 @@ namespace klockRepro.Business
 
         public ChronoControler()
         {
+            
             DurationToDisplay = new ObservableCollection<DisplayLetter>();
             numericDictionnary = new Dictionary<char, int[,]>();
             numericDictionnary.Add('0', new int[,] {{-1,-1,0,0,0,0,0,-1,-1,-1},

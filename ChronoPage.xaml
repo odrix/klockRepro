@@ -147,6 +147,21 @@
             </Setter>
         </Style>
         
+        <DataTemplate x:Key="LetterTemplate">
+                <TextBlock Text="{Binding}" Width="16" Height="16"
+                               FontSize="13" Margin="1" TextAlignment="Center" Foreground="white">
+                </TextBlock>
+        </DataTemplate>
+        
+        <Style x:Key="LetterGridStyle" TargetType="GridView">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <WrapGrid Width="370" Height="220" Orientation="Horizontal"  x:Name="wrpGridPanel"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <Page.BottomAppBar>
@@ -171,22 +186,50 @@
 
     <Grid x:Name="gridMain" Margin="30">
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="GridContent"  >
-            <GridView x:Name="GrdChrono" ItemsSource="{Binding DurationToDisplay}"
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*" />
+                <ColumnDefinition Width="12*"/>
+                <ColumnDefinition Width="25*" />
+                <ColumnDefinition Width="13*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+            <GridView x:Name="GrdChronoHour" ItemsSource="{Binding HourToDisplay}" Grid.Column="0"
                   HorizontalAlignment="Center" VerticalAlignment="Center" SelectionMode="None" IsHitTestVisible="False"
-                      ItemContainerStyle="{StaticResource LetterItemStyle}">
-                <GridView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock x:Name="textBlock" Text="{Binding Name}" Width="12" Height="12"
-                               FontSize="10" Margin="1" TextAlignment="Center" Foreground="{Binding Active, Converter={StaticResource ActiveColorConverter}}">
-                        </TextBlock>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
+                      ItemContainerStyle="{StaticResource LetterItemStyle}" 
+                      ItemTemplate="{StaticResource LetterTemplate}" 
+                      Style="{StaticResource LetterGridStyle}">
+            </GridView>
+            <GridView x:Name="GrdChronoSep1" ItemsSource="{Binding SepToDisplay}"  Grid.Column="1"
+                  HorizontalAlignment="Center" VerticalAlignment="Center" SelectionMode="None" IsHitTestVisible="False"
+                      ItemContainerStyle="{StaticResource LetterItemStyle}" ItemTemplate="{StaticResource LetterTemplate}">
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapGrid Width="1008" Height="130" Orientation="Vertical" x:Name="wrpGridPanel"/>
+                        <WrapGrid Width="90" Height="170" Orientation="Horizontal" x:Name="wrpGridPanel1"/>
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
             </GridView>
+            <GridView x:Name="GrdChronoMinute" ItemsSource="{Binding MinuteToDisplay}"  Grid.Column="2"
+                  HorizontalAlignment="Center" VerticalAlignment="Center" SelectionMode="None" IsHitTestVisible="False"
+                      ItemContainerStyle="{StaticResource LetterItemStyle}"  
+                      ItemTemplate="{StaticResource LetterTemplate}"
+                      Style="{StaticResource LetterGridStyle}">
+            </GridView>
+            <GridView x:Name="GrdChronoSep2" ItemsSource="{Binding SepToDisplay}"  Grid.Column="3"
+                  HorizontalAlignment="Center" VerticalAlignment="Center" SelectionMode="None" IsHitTestVisible="False"
+                      ItemContainerStyle="{StaticResource LetterItemStyle}" ItemTemplate="{StaticResource LetterTemplate}">
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapGrid Width="90" Height="170" Orientation="Horizontal" x:Name="wrpGridPanel2"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+            </GridView>
+            <GridView x:Name="GrdChronoSeconde" ItemsSource="{Binding SecondeToDisplay}"  Grid.Column="4"
+                  HorizontalAlignment="Center" VerticalAlignment="Center" SelectionMode="None" IsHitTestVisible="False"
+                      ItemContainerStyle="{StaticResource LetterItemStyle}" 
+                      ItemTemplate="{StaticResource LetterTemplate}"
+                      Style="{StaticResource LetterGridStyle}">
+            </GridView>
+            
         </Grid>
     </Grid>
 </common:LayoutAwarePage>

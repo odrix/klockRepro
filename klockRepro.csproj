@@ -109,8 +109,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Business\ChronoControlerBis.cs" />
     <Compile Include="Business\ClockControler.cs" />
     <Compile Include="Business\DisplayLetter.cs" />
+    <Compile Include="Business\IChronoControler.cs" />
     <Compile Include="Business\ITimeTranslater.cs" />
     <Compile Include="Business\IndexLengthWord.cs" />
     <Compile Include="Business\DateTimeExt.cs" />
@@ -136,8 +138,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="klockRepro_StoreKey.pfx" />
-    <None Include="klockRepro_TemporaryKey.pfx" />
     <PRIResource Include="Resources\en\Resources.resw" />
     <PRIResource Include="Resources\fr\Resources.resw" />
   </ItemGroup>
