@@ -11,9 +11,9 @@ namespace klockRepro.Common
         public int MinutesMargin { get; set; }
         public int LetterSize { get; set; }
         public int LetterFontSize { get; set; }
-
         public int Width { get; set; }
-
         public int MainMargin { get; set; }
+        public int WidthWithMarge { get; set; }
+        public System.Windows.Thickness LetterMargin { get; set; }
     }
 }

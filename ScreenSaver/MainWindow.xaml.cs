@@ -81,6 +81,11 @@ namespace ScreenSaver
             this.Close();
         }
 
+        private void Mouse_Close(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
         //protected override void LoadState(object navigationParameter, Dictionary<string, object> pageState)
         //{
         //    timer.Start();

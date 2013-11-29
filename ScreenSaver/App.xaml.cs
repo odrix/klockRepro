@@ -24,8 +24,10 @@ namespace ScreenSaver
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            //e.Args is the string[] of command line argruments
-            string firstArgs = e.Args[0];
+            string firstArgs  = "p";
+            if(e.Args.Length > 0)
+                firstArgs = e.Args[0];
+
             switch (firstArgs.ToLower())
             {
                 case "p" :
@@ -34,6 +36,7 @@ namespace ScreenSaver
                     MainClockControler.DisplayProperties.LetterSize = 12;
                     MainClockControler.DisplayProperties.LetterFontSize = 10;
                     MainClockControler.DisplayProperties.Width = 170;
+                    MainClockControler.DisplayProperties.WidthWithMarge = 176;
                     MainClockControler.DisplayProperties.MainMargin = 3;
                     break;
                 case "c":
@@ -42,7 +45,9 @@ namespace ScreenSaver
                     MainClockControler.DisplayProperties.MinutesMargin = 25;
                     MainClockControler.DisplayProperties.LetterSize = 50;
                     MainClockControler.DisplayProperties.LetterFontSize = 45;
+                    MainClockControler.DisplayProperties.LetterMargin = new Thickness(8, 4, 8, 4);
                     MainClockControler.DisplayProperties.Width = 760;
+                    MainClockControler.DisplayProperties.WidthWithMarge = 780;
                     MainClockControler.DisplayProperties.MainMargin = 30;
                     break;
             }
