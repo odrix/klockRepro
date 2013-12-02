@@ -5,7 +5,7 @@
         Title="MainWindow"
         Background="Black" Foreground="White" WindowStyle="None" ResizeMode="NoResize" 
         WindowStartupLocation="CenterScreen" WindowState="Maximized" Focusable="true" IsTabStop="False"
-        KeyDown="Key_Close" TouchDown="Touch_Close" MouseDown="Mouse_Close" >
+        KeyDown="Key_Close" TouchDown="Touch_Close" MouseDown="Mouse_Close" ShowInTaskbar="False" >
 
     <Window.Resources>
         <common:MinuteColorConverter x:Key="MinuteColorConverter" />
@@ -65,16 +65,19 @@
                         Foreground="#FF424242" >
                 <ListView.ItemTemplate>
                         <DataTemplate>
-                        <TextBlock x:Name="textBlock" Text="{Binding Name}" Width="{Binding DisplayProperties.LetterSize}" Height="{Binding DisplayProperties.LetterSize}"
-                               FontSize="{Binding DisplayProperties.LetterFontSize}" TextAlignment="Center"  
-                                   Margin="{Binding DisplayProperties.LetterMargin}"
-                               Style="{StaticResource LetterStyle}">
+                            <TextBlock x:Name="textBlock" Text="{Binding Name}" 
+                                   Width="{Binding DataContext.DisplayProperties.LetterSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}" 
+                                   Height="{Binding DataContext.DisplayProperties.LetterSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
+                                   FontSize="{Binding DataContext.DisplayProperties.LetterFontSize, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}" TextAlignment="Center"  
+                                   Margin="{Binding DataContext.DisplayProperties.LetterMargin, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}}"
+                                   Padding="0" Style="{StaticResource LetterStyle}" >
                             </TextBlock>
                         </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
-                        <WrapPanel  Width="{Binding DisplayProperties.Width}" Orientation="Horizontal" x:Name="wrpGridPanel"/>
+                        <WrapPanel  Width="{Binding DisplayProperties.Width}" Orientation="Horizontal" 
+                                    x:Name="wrpGridPanel"/>
                         </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>

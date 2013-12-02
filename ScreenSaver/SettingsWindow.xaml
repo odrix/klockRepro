@@ -1,0 +1,14 @@
+﻿<Window x:Class="ScreenSaver.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Paramètres" Height="120" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Pas de paramètres pour cet écran de veille." Margin="7" FontSize="14" />
+        <Button Grid.Row="1" Content="Ok" Width="80" Height="30" IsDefault="True" IsEnabled="True"
+                x:Name="btnOk" Click="btnOk_Click"/>
+    </Grid>
+</Window>
