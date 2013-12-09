@@ -4,42 +4,53 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+
+    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">-->
     <style>
-        body{margin:0;padding0;}
+        body{margin:0;padding:0;}
         #header {height:90px;background:black;border-bottom:solid 4px #888;color:snow;padding:8px 15%;}
         #header h1 {display:inline-block;margin-left:16px;padding-top:3px;vertical-align:top;}
         #footer {height:60px;border-top:solid 2px #ececec;color:#ececec}
         #details {width:70%;margin:auto;display:block;}
         #aside {float:left;width:20%;padding-top:42px;}
         #aside a {display:block;margin:9px;}
-        #content {float:left;width:79%;padding:16px 25px;}
-        /*#detail-installer {display:none;}*/
-        .button {padding:9px 25px;color:white;background:#71cbff;float:right;text-decoration:none;}
+        #content {float:left;width:75%;padding:16px 25px;}
+        #detail-installer {display:none;}
+        .button {padding:9px 25px;color:white;background:#71cbff;text-decoration:none;}
         .btnSocial {border:none;margin:2px;}
         .btnSocial img {width:22px;height:22px;border:none}
         h3 {margin-left:-6px;margin-bottom:6px;}
     </style>
-    <script type="text/javascript">
 
+    <!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.btnLinkLeft').click(function () {
+                var detailName = $(this).attr('href').replace('#', '#detail-');
+                $('#content>div').hide();
+                $(detailName).show();
+            });
+        });
     </script>
 </head>
 <body>
     <div id="header">
-        <img src="Assets/StoreLogo.png"  />
+        <img src="Assets/StoreLogo.png" width="65px"  />
         <h1>Il est l'heure</h1>
     </div>
     <div id="details">
         <div id="aside">
-            <a href="#telecharger" class="">Télécharger</a>
-            <a href="#installer">Installation</a>
+            <a href="#telecharger" class="btnLinkLeft">Télécharger</a>
+            <a href="#installer" class="btnLinkLeft">Installation</a>
         </div>
         <div id="content">
             <div id="detail-telecharger">
                 <h2>Ecran de veille de "il est l'heure"</h2>
                 albalblabalbalbalablablablabalbalbalbalablabla
-                <div style="float:right;margin-right:60px;">
+                <div style="float:right;margin-right:60px;margin-top: 200px;">
                     <a href="Assets/KlockRepro.scr" class="button">Télécharger</a>
-                    <p style="margin-top:7px;float:right;">
+                    <p style="margin-top:7px;margin-top:16px;">
                         Partager &nbsp;&nbsp;
                         <a href="#mail" class="btnSocial" title="mail"><img src="social/email.png" /></a>
                         <a href="#google" class="btnSocial" title="Google+"><img src="social/google_plus.png" /></a>
