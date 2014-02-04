@@ -48,7 +48,7 @@ namespace klockRepro
         private async void screensaver()
         {
 
-            bool x = await Launcher.LaunchUriAsync(new Uri("http://www.mydrix.com/KlockRepro.scr"));
+            bool x = await Launcher.LaunchUriAsync(new Uri("http://mydrix.com/ilestlheure/index.html"));
 
             //string screenSaverFile = "Assets\\KlockRepro.scr";
             //var file = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFileAsync(screenSaverFile);

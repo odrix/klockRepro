@@ -10,16 +10,19 @@
         body{margin:0;padding:0;}
         #header {height:90px;background:black;border-bottom:solid 4px #888;color:snow;padding:8px 15%;}
         #header h1 {display:inline-block;margin-left:16px;padding-top:3px;vertical-align:top;}
-        #footer {height:60px;border-top:solid 2px #ececec;color:#ececec}
         #details {width:70%;margin:auto;display:block;}
-        #aside {float:left;width:20%;padding-top:42px;}
+        #aside {float:left;width:20%;padding-top:42px;font-size:1.8em}
         #aside a {display:block;margin:9px;}
-        #content {float:left;width:75%;padding:16px 25px;}
+        #content {float:left;width:70%;padding:16px 32px;border-left: solid 2px #ececec;}
         #detail-installer {display:none;}
+		#detail-telecharger {margin-bottom:500px;}
+		.clear {clear:both;}
         .button {padding:9px 25px;color:white;background:#71cbff;text-decoration:none;}
         .btnSocial {border:none;margin:2px;}
         .btnSocial img {width:22px;height:22px;border:none}
         h3 {margin-left:-6px;margin-bottom:6px;}
+		#footer {height: 24px;border-top: solid 2px #aaa;color: #ececec;background: black;width: 100%;text-align: right;padding-top:6px;position:fixed;bottom:0px;}
+		#footer span {width:36px;display:inline-block;}
     </style>
 
     <!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
@@ -47,8 +50,11 @@
         <div id="content">
             <div id="detail-telecharger">
                 <h2>Ecran de veille de "il est l'heure"</h2>
-                albalblabalbalbalablablablabalbalbalbalablabla
-                <div style="float:right;margin-right:60px;margin-top: 200px;">
+                Voici l'écran de veille de l'application Windows 8 <a href="http://apps.microsoft.com/windows/fr-fr/app/e8907b9e-ad4f-43fe-b7ea-ae6a2f8ffcd4" target="_blank">"Il est l'heure"</a> elle même insipré de l'horloge <a href="http://www.qlocktwo.com/?lang=fr" target="_blank">Qlock Two</a> by Bieger&Funk.
+				<br/><br/>
+				Il vous siffit de télécharger le fichier .scr et de suivre les instructions de <a href="#installer">la page d'installation</a>.
+				<br/>
+                <div style="float:right;margin-right:60px;margin-top: 120px;">
                     <a href="Assets/KlockRepro.scr" class="button">Télécharger</a>
                     <p style="margin-top:7px;margin-top:16px;">
                         Partager &nbsp;&nbsp;
@@ -71,11 +77,16 @@
                     Pour ce faire, il suffit de faire un clique droit sur le fichier .scr, puis "installer" dans le menu contextuel.<br /><br />
                     <img src="tutoInstall/installer.jpg" />
                 </p>
+				<p><h3>3.</h3>
+                    Profitez de votre nouvel écran de veille
+                </p>
+				<br/><br/>
             </div>
         </div>
     </div>
+	<div class="clear"></div>
     <div id="footer">
-
+Created by Odrix<span> </span>
     </div>
 </body>
 </html>
